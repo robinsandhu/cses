@@ -72,14 +72,11 @@ int main()
     {
         int u = edges[j].u, v = edges[j].v;
         ll c = edges[j].c;
-        if (dist[u] != LLONG_MAX)
+        if (dist[v] > dist[u] + c)
         {
-            if (dist[v] > dist[u] + c)
-            {
-                relaxed_node = v;
-                flag = true;
-                break;
-            }
+            relaxed_node = v;
+            flag = true;
+            break;
         }
     }
  
@@ -105,10 +102,10 @@ int main()
         temp = par[temp];
     }
     cout << "YES\n";
-    for (auto &e : cycle)
-    {
-        cout << e << " ";
-    }
     cout << cycle_node << endl;
+    for (int i=cycle.size()-1;i>=0;i--)
+    {
+        cout << cycle[i] << " ";
+    }
     return 0;
 }
